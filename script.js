@@ -160,7 +160,7 @@ function renderHistoryList() {
     const dotClass = item.ok ? 'done' : '';
     
     html += `
-      <div style="background:var(--white); border:1.5px solid var(--gray-200); border-radius:var(--radius); overflow:hidden; transition:all 0.3s; margin-bottom:12px;">
+      <div style="background:var(--white); border:1.5px solid var(--gray-200); border-radius:var(--radius); overflow:hidden; transition:transform 0.3s, border-color 0.3s; margin-bottom:12px;">
         <div class="history-card ${missClass}" onclick="toggleHistoryAccordion(this)" style="border:none; border-radius:0; box-shadow:none; margin:0;">
           <div class="history-shift">${item.shift}</div>
           <div class="history-info">
