@@ -161,14 +161,20 @@ function renderHistoryList() {
     
     html += `
       <div style="background:var(--white); border:1.5px solid var(--gray-200); border-radius:var(--radius); overflow:hidden; transition:transform 0.3s, border-color 0.3s; margin-bottom:12px;">
-        <div class="history-card ${missClass}" onclick="toggleHistoryAccordion(this)" style="border:none; border-radius:0; box-shadow:none; margin:0;">
+        <div class="history-card ${missClass}" onclick="toggleHistoryAccordion(this)" style="border:none; border-radius:0; box-shadow:none; margin:0; align-items:flex-start;">
           <div class="history-shift">${item.shift}</div>
           <div class="history-info">
             <div class="history-route">${item.route}</div>
-            <div class="history-meta">${item.ok ? `RFID: ${item.t1} · Tiba: ${item.t3} · Plat: ${item.plat}` : 'RFID tidak terdeteksi · Shift 1'}</div>
-            <div style="margin-top:8px;">${badgeHtml}</div>
+            <div class="history-meta" style="display:flex; flex-direction:column; gap:4px; margin-top:8px;">
+              ${item.ok ? `
+                <span><strong>RFID:</strong> ${item.t1}</span>
+                <span><strong>Tiba:</strong> ${item.t3}</span>
+                <span><strong>Plat:</strong> ${item.plat}</span>
+              ` : '<span>RFID tidak terdeteksi · Shift 1</span>'}
+            </div>
+            <div style="margin-top:12px;">${badgeHtml}</div>
           </div>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="2" style="transition:transform 0.3s"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="2" style="transition:transform 0.3s; margin-top:4px;"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="history-detail-dropdown" style="max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); background:var(--gray-50);">
           <div style="padding: 20px; border-top: 1px solid var(--gray-200);">

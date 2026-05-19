@@ -25,7 +25,8 @@
   --font: 'Plus Jakarta Sans',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:var(--font);background:var(--gray-50);color:var(--gray-800);min-height:100vh}
+html{scroll-behavior:smooth;touch-action:manipulation}
+body{font-family:var(--font);background:var(--gray-50);color:var(--gray-800);min-height:100vh;-webkit-overflow-scrolling:touch}
 
 /* === LAYOUT === */
 .app-shell{display:flex;min-height:100vh}

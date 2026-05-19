@@ -824,9 +824,9 @@
               Kembali
             </button>
             <div class="section-label">Histori Perjalanan</div>
-
-            <div class="history-list" id="history-list-container"></div>
-
+            <div class="detail-panel" style="padding: 24px;">
+              <div class="history-list" id="history-list-container"></div>
+            </div>
           </div>
 
           <!-- ── TAB: PROFIL KARYAWAN ── -->
@@ -884,28 +884,7 @@
     </div>
   </div><!-- /page-dashboard -->
 
-  <!-- Demo Navigation -->
-  <div
-    style="position:fixed; bottom:20px; right:20px; z-index:9999; display:flex; flex-direction:column; align-items:flex-end; gap:10px;">
-    <div id="demo-menu" class="demo-nav"
-      style="position:relative; bottom:0; right:0; opacity:0; transform:scale(0.8); pointer-events:none; transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-origin:bottom right;">
-      <button class="demo-btn" onclick="showPage('login')">① Login</button>
-      <button class="demo-btn" onclick="showPage('dashboard');switchTab('pusat')">② Dashboard</button>
-      <button class="demo-btn" onclick="showPage('dashboard');switchTab('jadwal')">③ Jadwal</button>
-      <button class="demo-btn" onclick="showPage('dashboard');switchTab('rfid')">④ RFID</button>
-      <button class="demo-btn" onclick="showPage('dashboard');switchTab('tracking')">⑤ Tracking</button>
-      <button class="demo-btn" onclick="showPage('dashboard');switchTab('summary')">⑥ Histori</button>
-    </div>
-    <button onclick="toggleDemoMenu()"
-      style="background:var(--gray-800); color:#fff; border:none; border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.2); transition:all 0.3s;"
-      onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <circle cx="12" cy="12" r="3" />
-        <path
-          d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-      </svg>
-    </button>
-  </div>
+
 
   <script src="script.js"></script>
 </body>
