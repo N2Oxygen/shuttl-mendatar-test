@@ -242,12 +242,15 @@
                   <div
                     style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.85); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px;">
                     Shift Anda Hari Ini</div>
-                  <div
-                    style="font-size:26px; font-weight:800; letter-spacing:-1px; display:flex; align-items:center; gap:12px;">
-                    SHIFT 1 <span style="font-size:20px; font-weight:600; color:rgba(255,255,255,0.9);">(Pagi)</span>
-                    <span
-                      style="font-size:11px; font-weight:800; color:#fff; background:#10b981; padding:4px 12px; border-radius:12px; text-transform:uppercase; letter-spacing:0.5px; display:inline-flex; align-items:center; gap:6px; margin-left:4px; letter-spacing:0;"><span
-                        style="width:6px; height:6px; background:#fff; border-radius:50%; display:inline-block; animation:pulseDot 2s infinite"></span>Aktif</span>
+                  <div style="display:inline-flex; align-items:center; gap:14px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); padding:10px 20px; border-radius:20px; box-shadow:0 8px 32px rgba(0,0,0,0.1);">
+                    <div style="display:flex; flex-direction:column; line-height:1.2; text-align:right;">
+                      <span style="font-size:14px; font-weight:700; color:#fff; letter-spacing:2px;">SHIFT</span>
+                      <span style="font-size:14px; font-weight:700; color:#fff; letter-spacing:2px;">PAGI</span>
+                    </div>
+                    <div style="width:2px; height:36px; background:rgba(255,255,255,0.15); border-radius:2px;"></div>
+                    <div style="font-size:46px; font-weight:900; color:#fff; line-height:0.8; letter-spacing:-2px; text-shadow:0 0 24px rgba(255,255,255,0.4);">
+                      1
+                    </div>
                   </div>
                   <div
                     style="display:flex; align-items:center; gap:6px; margin-top:10px; font-size:13px; font-weight:500; color:rgba(255,255,255,0.8);">
@@ -299,45 +302,44 @@
               </div>
             </div>
 
-
-
-            <div class="tab-group" id="schedule-tabs">
-              <div class="tab-slider"></div>
-              <button class="tab-btn active" onclick="toggleSchedule('normal', 0)">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <circle cx="12" cy="12" r="5" />
-                  <line x1="12" y1="1" x2="12" y2="3" />
-                  <line x1="12" y1="21" x2="12" y2="23" />
-                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                  <line x1="1" y1="12" x2="3" y2="12" />
-                  <line x1="21" y1="12" x2="23" y2="12" />
-                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                </svg>
-                Jadwal Normal
-              </button>
-              <button class="tab-btn" onclick="toggleSchedule('ramadhan', 1)">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                </svg>
-                Jadwal Ramadhan
-              </button>
-            </div>
-
-            <div class="section-label">SHIFT</div>
-            <div class="shift-row">
-              <div class="shift-card active" onclick="selectShift(this)">
-                <div class="shift-number">1</div>
-                <div class="shift-time">05:00 - 16:00</div>
+            <div class="controls-wrapper">
+              <div class="tab-group" id="schedule-tabs">
+                <div class="tab-slider" id="tab-slider"></div>
+                <button class="tab-btn active" onclick="toggleSchedule('normal', 0)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                  </svg>
+                  Jadwal Normal
+                </button>
+                <button class="tab-btn" onclick="toggleSchedule('ramadhan', 1)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                  </svg>
+                  Jadwal Ramadhan
+                </button>
               </div>
-              <div class="shift-card" onclick="selectShift(this)">
-                <div class="shift-number">2</div>
-                <div class="shift-time">14:00 - 01:00</div>
-              </div>
-              <div class="shift-card" onclick="selectShift(this)">
-                <div class="shift-number">3</div>
-                <div class="shift-time">23:00 - 08:00</div>
+
+              <div class="shift-row">
+                <div class="shift-card active" onclick="selectShift(this)">
+                  <div class="shift-number">Shift 1</div>
+                  <div class="shift-time">05:00 - 16:00</div>
+                </div>
+                <div class="shift-card" onclick="selectShift(this)">
+                  <div class="shift-number">Shift 2</div>
+                  <div class="shift-time">14:00 - 01:00</div>
+                </div>
+                <div class="shift-card" onclick="selectShift(this)">
+                  <div class="shift-number">Shift 3</div>
+                  <div class="shift-time">23:00 - 08:00</div>
+                </div>
               </div>
             </div>
 
