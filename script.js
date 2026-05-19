@@ -64,20 +64,26 @@ function toggleRouteDetail(el, name) {
     }
   }
 
-  // Toggle Accordion
-  if (!el.classList.contains('active')) {
-    // Close others
-    document.querySelectorAll('.route-card').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.route-chevron svg').forEach(c => c.style.transform = 'rotate(0deg)');
-    
-    // Open this
-    el.classList.add('active');
-    chevron.style.transform = 'rotate(90deg)';
-    chevron.style.transition = 'transform 0.3s ease';
-  } else {
-    // Close this
+  // Close all other cards
+  document.querySelectorAll('.route-card').forEach(c => {
+    if (c !== el && c.classList.contains('active')) {
+      c.classList.remove('active');
+      const d = c.querySelector('.route-detail');
+      if (d) d.style.maxHeight = '0';
+      const ch = c.querySelector('.route-chevron svg');
+      if (ch) ch.style.transform = 'rotate(0deg)';
+    }
+  });
+
+  // Toggle this card
+  if (el.classList.contains('active')) {
     el.classList.remove('active');
+    detail.style.maxHeight = '0';
     chevron.style.transform = 'rotate(0deg)';
+  } else {
+    el.classList.add('active');
+    detail.style.maxHeight = detail.scrollHeight + 'px';
+    chevron.style.transform = 'rotate(90deg)';
   }
 }
 
