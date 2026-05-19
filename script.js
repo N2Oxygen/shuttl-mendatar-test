@@ -276,4 +276,29 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('active');
     });
   });
+
+  // Shift Carousel: update dots on scroll
+  const carousel = document.getElementById('shift-carousel');
+  if (carousel) {
+    carousel.addEventListener('scroll', () => {
+      const cards = carousel.querySelectorAll('.shift-info-card');
+      const dots = document.querySelectorAll('.carousel-dot');
+      const scrollLeft = carousel.scrollLeft;
+      const cardWidth = cards[0]?.offsetWidth + 16; // gap
+      const activeIndex = Math.round(scrollLeft / cardWidth);
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === activeIndex);
+      });
+    });
+  }
 });
+
+// Carousel: scroll to specific card
+function scrollToCard(index) {
+  const carousel = document.getElementById('shift-carousel');
+  if (!carousel) return;
+  const cards = carousel.querySelectorAll('.shift-info-card');
+  if (cards[index]) {
+    cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  }
+}

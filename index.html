@@ -232,75 +232,119 @@
               <span class="rfid-badge on"><span class="rfid-dot"></span> RFID On</span>
             </div>
 
-            <!-- Detail Shift Info -->
-            <div class="shift-info-card"
-              style="background:var(--white); border:1.5px solid var(--gray-200); border-radius:16px; padding:20px; color:var(--gray-800); margin-bottom:24px; box-shadow:0 12px 24px rgba(0,0,0,0.04); position:relative; overflow:hidden; max-width:420px;">
+            <!-- Shift Info Carousel -->
+            <div class="shift-carousel-wrapper">
+              <div class="shift-carousel" id="shift-carousel">
 
-              <div
-                style="display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:2; margin-bottom:16px;">
-                <div>
-                  <div
-                    style="font-size:13px; font-weight:600; color:var(--gray-500); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px;">
-                    Shift Anda Hari Ini</div>
-                  <div
-                    style="display:inline-flex; align-items:center; gap:14px; background:var(--green-bg); border:1px solid var(--green-ok); padding:10px 20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.03);">
-                    <div style="display:flex; flex-direction:column; line-height:1.2; text-align:left;">
-                      <span style="font-size:14px; font-weight:700; color:var(--green-ok); letter-spacing:2px;">SHIFT</span>
-                      <span style="font-size:14px; font-weight:700; color:var(--green-ok); letter-spacing:2px;">PAGI</span>
+                <!-- Card 1: Hari Ini -->
+                <div class="shift-info-card">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:2; margin-bottom:16px;">
+                    <div>
+                      <div style="font-size:13px; font-weight:600; color:var(--gray-500); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px;">
+                        Shift Anda Hari Ini</div>
+                      <div style="display:inline-flex; align-items:center; gap:14px; background:transparent; border:none; padding:10px 20px 10px 0; border-radius:12px;">
+                        <div style="display:flex; flex-direction:column; line-height:1.2; text-align:left;">
+                          <span style="font-size:14px; font-weight:700; color:var(--green-ok); letter-spacing:2px;">SHIFT</span>
+                          <span style="font-size:14px; font-weight:700; color:var(--green-ok); letter-spacing:2px;">PAGI</span>
+                        </div>
+                        <div style="width:2px; height:36px; background:rgba(22,163,74,0.25); border-radius:2px;"></div>
+                        <div style="font-size:46px; font-weight:900; color:var(--green-ok); line-height:0.8; letter-spacing:-2px;">1</div>
+                      </div>
+                      <div style="display:flex; align-items:center; gap:6px; margin-top:10px; font-size:13px; font-weight:500; color:var(--gray-600);">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        Titik Jemput: <span style="color:var(--navy); font-weight:700; background:var(--blue-soft); padding:2px 8px; border-radius:6px; margin-left:2px;">Johar</span>
+                      </div>
                     </div>
-                    <div style="width:2px; height:36px; background:rgba(22,163,74,0.25); border-radius:2px;"></div>
-                    <div
-                      style="font-size:46px; font-weight:900; color:var(--green-ok); line-height:0.8; letter-spacing:-2px;">
-                      1
+                    <div style="width:40px; height:40px; border-radius:12px; background:var(--gray-100); display:flex; align-items:center; justify-content:center;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
                     </div>
                   </div>
-                  <div
-                    style="display:flex; align-items:center; gap:6px; margin-top:10px; font-size:13px; font-weight:500; color:var(--gray-600);">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2.5">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    Titik Jemput: <span
-                      style="color:var(--navy); font-weight:700; background:var(--blue-soft); padding:2px 8px; border-radius:6px; margin-left:2px;">Johar</span>
+                  <div style="padding-top:16px; position:relative; z-index:2; border-top:1px solid var(--gray-200); display:flex; flex-direction:column; gap:16px;">
+                    <div style="display:flex; justify-content:space-between; gap:12px;">
+                      <div style="flex:1;">
+                        <div style="font-size:11px; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Berangkat</div>
+                        <div id="info-berangkat-jam" style="font-size:16px; font-weight:800; color:var(--gray-800);">05:30 WIB</div>
+                      </div>
+                      <div style="flex:1;">
+                        <div style="font-size:11px; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Pulang</div>
+                        <div id="info-pulang-jam" style="font-size:16px; font-weight:800; color:var(--gray-800);">16:15 WIB</div>
+                      </div>
+                    </div>
+                    <button onclick="switchTab('jadwal')"
+                      style="width:100%; background:var(--navy); color:#fff; border:none; padding:12px 16px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 12px rgba(26,58,107,0.3); transition:transform 0.2s, background-color 0.2s;"
+                      onmouseover="this.style.transform='translateY(-2px)'; this.style.backgroundColor='var(--navy-dark)'"
+                      onmouseout="this.style.transform='translateY(0)'; this.style.backgroundColor='var(--navy)'">
+                      Lihat Rute <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
-                <div
-                  style="width:40px; height:40px; border-radius:12px; background:var(--gray-100); display:flex; align-items:center; justify-content:center;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2">
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
+
+                <!-- Card 2: Besok -->
+                <div class="shift-info-card">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; position:relative; z-index:2; margin-bottom:16px;">
+                    <div>
+                      <div style="font-size:13px; font-weight:600; color:var(--gray-500); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px;">
+                        Shift Anda Untuk Besok</div>
+                      <div style="display:inline-flex; align-items:center; gap:14px; background:transparent; border:none; padding:10px 20px 10px 0; border-radius:12px;">
+                        <div style="display:flex; flex-direction:column; line-height:1.2; text-align:left;">
+                          <span style="font-size:14px; font-weight:700; color:#f59e0b; letter-spacing:2px;">SHIFT</span>
+                          <span style="font-size:14px; font-weight:700; color:#f59e0b; letter-spacing:2px;">SIANG</span>
+                        </div>
+                        <div style="width:2px; height:36px; background:rgba(245,158,11,0.25); border-radius:2px;"></div>
+                        <div style="font-size:46px; font-weight:900; color:#f59e0b; line-height:0.8; letter-spacing:-2px;">2</div>
+                      </div>
+                      <div style="display:flex; align-items:center; gap:6px; margin-top:10px; font-size:13px; font-weight:500; color:var(--gray-600);">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                          <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        Titik Jemput: <span style="color:var(--navy); font-weight:700; background:var(--blue-soft); padding:2px 8px; border-radius:6px; margin-left:2px;">Johar</span>
+                      </div>
+                    </div>
+                    <div style="width:40px; height:40px; border-radius:12px; background:var(--gray-100); display:flex; align-items:center; justify-content:center;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div style="padding-top:16px; position:relative; z-index:2; border-top:1px solid var(--gray-200); display:flex; flex-direction:column; gap:16px;">
+                    <div style="display:flex; justify-content:space-between; gap:12px;">
+                      <div style="flex:1;">
+                        <div style="font-size:11px; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Berangkat</div>
+                        <div style="font-size:16px; font-weight:800; color:var(--gray-800);">14:00 WIB</div>
+                      </div>
+                      <div style="flex:1;">
+                        <div style="font-size:11px; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">Pulang</div>
+                        <div style="font-size:16px; font-weight:800; color:var(--gray-800);">01:00 WIB</div>
+                      </div>
+                    </div>
+                    <button onclick="switchTab('jadwal')"
+                      style="width:100%; background:var(--navy); color:#fff; border:none; padding:12px 16px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 12px rgba(26,58,107,0.3); transition:transform 0.2s, background-color 0.2s;"
+                      onmouseover="this.style.transform='translateY(-2px)'; this.style.backgroundColor='var(--navy-dark)'"
+                      onmouseout="this.style.transform='translateY(0)'; this.style.backgroundColor='var(--navy)'">
+                      Lihat Rute <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
+
               </div>
-
-              <div
-                style="padding-top:16px; position:relative; z-index:2; border-top:1px solid var(--gray-200); display:flex; flex-direction:column; gap:16px;">
-                <div style="display:flex; justify-content:space-between; gap:12px;">
-                  <div style="flex:1;">
-                    <div
-                      style="font-size:11px; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">
-                      Berangkat</div>
-                    <div id="info-berangkat-jam" style="font-size:16px; font-weight:800; color:var(--gray-800);">05:30 WIB</div>
-                  </div>
-                  <div style="flex:1;">
-                    <div
-                      style="font-size:11px; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px;">
-                      Pulang</div>
-                    <div id="info-pulang-jam" style="font-size:16px; font-weight:800; color:var(--gray-800);">16:15 WIB</div>
-                  </div>
-                </div>
-
-                <button onclick="switchTab('jadwal')"
-                  style="width:100%; background:var(--navy); color:#fff; border:none; padding:12px 16px; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 4px 12px rgba(26,58,107,0.3); transition:transform 0.2s, background-color 0.2s;"
-                  onmouseover="this.style.transform='translateY(-2px)'; this.style.backgroundColor='var(--navy-dark)'"
-                  onmouseout="this.style.transform='translateY(0)'; this.style.backgroundColor='var(--navy)'">
-                  Lihat Rute <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2.5">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </button>
+              <!-- Dot Indicators -->
+              <div class="carousel-dots" id="carousel-dots">
+                <span class="carousel-dot active" onclick="scrollToCard(0)"></span>
+                <span class="carousel-dot" onclick="scrollToCard(1)"></span>
               </div>
             </div>
 
@@ -328,6 +372,8 @@
                   Jadwal Ramadhan
                 </button>
               </div>
+
+              <div class="controls-divider"></div>
 
               <div class="shift-row">
                 <div class="shift-card active" onclick="selectShift(this)">
