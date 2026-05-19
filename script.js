@@ -13,18 +13,7 @@ window.onload = () => {
   showPage('login');
 };
 
-function toggleDemoMenu() {
-  const menu = document.getElementById('demo-menu');
-  if (menu.style.opacity === '0') {
-    menu.style.opacity = '1';
-    menu.style.transform = 'scale(1)';
-    menu.style.pointerEvents = 'auto';
-  } else {
-    menu.style.opacity = '0';
-    menu.style.transform = 'scale(0.8)';
-    menu.style.pointerEvents = 'none';
-  }
-}
+
 
 function switchTab(tab) {
   // Show dashboard first
