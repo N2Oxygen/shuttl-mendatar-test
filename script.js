@@ -154,22 +154,32 @@ function renderHistoryList() {
     const statusText = item.ok ? 'Selesai & Sukses' : 'RFID Tidak Terdeteksi';
     const dotClass = item.ok ? 'done' : '';
     
+    const shiftName = item.shift === '1' ? 'PAGI' : (item.shift === '2' ? 'SIANG' : 'MALAM');
+    const shiftColor = item.ok ? 'var(--navy)' : '#ef4444';
+    const shiftBg = item.ok ? 'rgba(26,58,107,0.25)' : 'rgba(239,68,68,0.25)';
+    
     html += `
-      <div style="background:var(--white); border:1.5px solid var(--gray-200); border-radius:var(--radius); overflow:hidden; transition:transform 0.3s, border-color 0.3s; margin-bottom:12px;">
-        <div class="history-card ${missClass}" onclick="toggleHistoryAccordion(this)" style="border:none; border-radius:0; box-shadow:none; margin:0; align-items:flex-start;">
-          <div class="history-shift">${item.shift}</div>
-          <div class="history-info">
-            <div class="history-route">${item.route}</div>
-            <div class="history-meta" style="display:flex; flex-direction:column; gap:4px; margin-top:8px;">
-              ${item.ok ? `
-                <span><strong>RFID:</strong> ${item.t1}</span>
-                <span><strong>Tiba:</strong> ${item.t3}</span>
-                <span><strong>Plat:</strong> ${item.plat}</span>
-              ` : '<span>RFID tidak terdeteksi · Shift 1</span>'}
+      <div style="background:var(--white); border:1.5px solid var(--gray-200); border-radius:16px; overflow:hidden; transition:transform 0.3s, border-color 0.3s; margin-bottom:12px;">
+        <div class="route-card ${missClass}" onclick="toggleHistoryAccordion(this)" style="border:none; border-radius:0; box-shadow:none; margin:0; padding:16px 18px; align-items:center;">
+          <div style="display:inline-flex; align-items:center; gap:12px; padding-right:10px;">
+            <div style="display:flex; flex-direction:column; line-height:1.2; text-align:left;">
+              <span style="font-size:12px; font-weight:700; color:${shiftColor}; letter-spacing:1px;">SHIFT</span>
+              <span style="font-size:12px; font-weight:700; color:${shiftColor}; letter-spacing:1px;">${shiftName}</span>
             </div>
-            <div style="margin-top:12px;">${badgeHtml}</div>
+            <div style="width:2px; height:32px; background:${shiftBg}; border-radius:2px;"></div>
+            <div style="font-size:40px; font-weight:900; color:${shiftColor}; line-height:0.8; letter-spacing:-2px;">${item.shift}</div>
           </div>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="2" style="transition:transform 0.3s; margin-top:4px;"><polyline points="6 9 12 15 18 9"/></svg>
+          <div class="route-info" style="flex:1;">
+            <div class="route-name" style="font-size:15px; font-weight:600; color:var(--gray-800);">${item.route}</div>
+            <div class="route-meta" style="margin-top:6px; font-size:12.5px; color:var(--gray-500); display:flex; flex-direction:column; gap:4px;">
+              ${item.ok ? `
+                <span><strong>RFID:</strong> ${item.t1} &nbsp;·&nbsp; <strong>Tiba:</strong> ${item.t3}</span>
+                <span><strong>Plat Kendaraan:</strong> ${item.plat}</span>
+              ` : '<span>RFID tidak terdeteksi</span>'}
+            </div>
+            <div style="margin-top:10px;">${badgeHtml}</div>
+          </div>
+          <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gray-400); transition:transform 0.3s;"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="history-detail-dropdown" style="max-height:0; overflow:hidden; transition:max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); background:var(--gray-50);">
           <div style="padding: 20px; border-top: 1px solid var(--gray-200);">
