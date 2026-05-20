@@ -94,7 +94,7 @@ body{font-family:var(--font);background:var(--gray-50);color:var(--gray-800);min
 .shift-info-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:16px;padding:18px 20px;color:var(--gray-800);box-shadow:0 12px 24px rgba(0,0,0,0.04);position:relative;overflow:hidden;width:100%}
 .carousel-dots{display:none}
 
-#tab-pusat, #tab-jadwal, #tab-tracking, #tab-summary {
+#tab-pusat, #tab-jadwal, #tab-rfid, #tab-tracking, #tab-summary {
   width: 100%;
   min-width: 0;
   max-width: 480px;
