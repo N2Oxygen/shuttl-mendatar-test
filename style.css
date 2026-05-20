@@ -91,13 +91,14 @@ body{font-family:var(--font);background:var(--gray-50);color:var(--gray-800);min
 .shift-carousel-wrapper{margin-bottom:24px}
 .shift-carousel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;padding-bottom:4px}
 .shift-carousel::-webkit-scrollbar{display:none}
-.shift-info-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:16px;padding:20px;color:var(--gray-800);box-shadow:0 12px 24px rgba(0,0,0,0.04);position:relative;overflow:hidden;min-width:0;flex:0 0 calc(50% - 8px);scroll-snap-align:start}
+.shift-info-card{background:var(--white);border:1.5px solid var(--gray-200);border-radius:16px;padding:20px;color:var(--gray-800);box-shadow:0 12px 24px rgba(0,0,0,0.04);position:relative;overflow:hidden;min-width:100%;flex:0 0 100%;scroll-snap-align:start}
 .carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
 .carousel-dot{width:8px;height:8px;border-radius:50%;background:var(--gray-300);cursor:pointer;transition:all .3s ease}
 .carousel-dot.active{background:var(--navy);width:24px;border-radius:4px}
 
-@media(max-width:768px){
-  .shift-info-card{flex:0 0 85%;min-width:85%}
+#tab-pusat, #tab-jadwal, #tab-tracking, #tab-summary {
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 .controls-wrapper{background:rgba(26,58,107,0.04);border:1px solid rgba(26,58,107,0.08);border-radius:16px;padding:6px;margin-bottom:28px}
