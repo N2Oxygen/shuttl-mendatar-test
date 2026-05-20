@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mendatar — Sistem Jadwal Bus</title>
+<meta name="description" content="Sistem Informasi Jadwal Bus Antar Jemput PT Mendatar">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══ PAGE: LOGIN (Screenshot 1) ═══ -->
+<div id="page-login" class="page-full active">
+<div class="login-page" style="flex:1">
+<div class="login-card">
+  <div class="login-header">
+    <div class="login-sys-label">Sistem Informasi Jadwal Bus Antar Jemput</div>
+    <div class="login-brand">PT Mendatar</div>
+    <div class="logo-emblem">
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+        <circle cx="30" cy="30" r="22" stroke="white" stroke-width="2" opacity=".3"/>
+        <rect x="18" y="34" width="24" height="12" rx="2" fill="white" opacity=".8"/>
+        <rect x="22" y="24" width="16" height="12" rx="1" fill="white" opacity=".6"/>
+        <path d="M26 22L30 12L34 22" fill="white" opacity=".9"/>
+        <circle cx="22" cy="47" r="3" fill="white" opacity=".7"/>
+        <circle cx="38" cy="47" r="3" fill="white" opacity=".7"/>
+        <circle cx="42" cy="22" r="8" stroke="white" stroke-width="1.5" opacity=".4"/>
+        <circle cx="42" cy="22" r="4" fill="white" opacity=".3"/>
+      </svg>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">NIK</label>
+    <input type="text" class="form-input" placeholder="cth: MDT-01">
+  </div>
+  <div class="form-group">
+    <label class="form-label">KATA SANDI</label>
+    <input type="password" class="form-input" value="password">
+  </div>
+  <div class="remember-row" onclick="toggleRemember(this.querySelector('.remember-check'))">
+    <div class="remember-check"></div>
+    <span>Ingat Saya</span>
+  </div>
+  <button class="btn-primary" onclick="showPage('dashboard')">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
+    OTENTIKASI
+  </button>
+  <a href="#" class="forgot-link" onclick="return false">Lupa Password?</a>
+</div>
+</div>
+</div>
+
+<!-- ═══ MAIN APP ═══ -->
+<div id="page-dashboard" class="page">
+<div class="app-shell">
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+<div class="sidebar-logo">
+  <div class="logo-badge">
+    <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="12" rx="3"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+    <div><div class="logo-text">Mendatar</div><div class="logo-sub">Sistem Jadwal Bus</div></div>
+  </div>
+</div>
+<nav class="sidebar-nav">
+  <div class="nav-section-label">Menu Utama</div>
+  <a class="nav-item active" onclick="switchTab('pusat')"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Pusat</a>
+  <a class="nav-item" onclick="switchTab('jadwal')"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Jadwal</a>
+  <a class="nav-item" onclick="switchTab('rfid')"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/></svg>RFID Check-in</a>
+  <a class="nav-item" onclick="switchTab('tracking')"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>Tracking Bus</a>
+  <a class="nav-item" onclick="switchTab('summary')"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Histori</a>
+  <div class="nav-section-label" style="margin-top:8px">Akun</div>
+  <a class="nav-item" onclick="showPage('login')"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>Keluar</a>
+</nav>
+<div class="sidebar-profile">
+  <div class="profile-avatar">GH</div>
+  <div class="profile-info"><div class="profile-name">Gotoh Hitori</div><div class="profile-nik">NIK: MDT-01</div></div>
+</div>
+</aside>
+
+<main class="main">
+<!-- Topbar -->
+<div class="topbar">
+  <div class="topbar-left">
+    <button class="btn-icon hamburger" onclick="toggleSidebar()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+    <div><div class="topbar-title" id="topbar-title">Beranda — Pusat</div><div class="topbar-subtitle">Jadwal Normal · Senin, 19 Mei 2026</div></div>
+  </div>
+  <div class="topbar-actions">
+    <span class="rfid-badge on" id="rfid-badge-top"><span class="rfid-dot"></span> RFID On</span>
+    <button class="btn-icon" title="Notifikasi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ── TAB: PUSAT (Screenshot 2) ── -->
+<div id="tab-pusat" class="page active">
+  <!-- Profile Card like mobile -->
+  <div class="profile-card">
+    <div class="profile-card-avatar"><div style="width:48px;height:48px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px">GH</div></div>
+    <div class="profile-card-info"><div class="profile-card-name">Gotoh Hitori</div><div class="profile-card-nik">NIK: MDT-01</div></div>
+    <span class="rfid-badge on"><span class="rfid-dot"></span> RFID On</span>
+  </div>
+
+  <div class="tab-group">
+    <button class="tab-btn active">Jadwal Normal</button>
+    <button class="tab-btn">Jadwal Ramadhan</button>
+  </div>
+
+  <div class="section-label">SHIFT</div>
+  <div class="shift-row">
+    <div class="shift-card active" onclick="selectShift(this)"><div class="shift-number">1</div><div class="shift-time">05:00 - 16:00</div></div>
+    <div class="shift-card" onclick="selectShift(this)"><div class="shift-number">2</div><div class="shift-time">14:00 - 01:00</div></div>
+    <div class="shift-card" onclick="selectShift(this)"><div class="shift-number">3</div><div class="shift-time">23:00 - 08:00</div></div>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+    <input type="text" class="search-input" placeholder="Cari titik jemput...">
+  </div>
+
+  <div class="route-list">
+    <div class="route-card active" onclick="selectRoute(this,'Johar')">
+      <div class="route-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a3a6b" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="3"/><path d="M7 17v2M17 17v2"/><circle cx="7" cy="14" r="1" fill="#1a3a6b"/><circle cx="17" cy="14" r="1" fill="#1a3a6b"/></svg></div>
+      <div class="route-info"><div class="route-name">Johar</div><div class="route-meta">3 pemberhentian · 06:00</div></div>
+      <div class="route-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+    <div class="route-card" onclick="selectRoute(this,'Lamaran')">
+      <div class="route-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a3a6b" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="3"/><path d="M7 17v2M17 17v2"/><circle cx="7" cy="14" r="1" fill="#1a3a6b"/><circle cx="17" cy="14" r="1" fill="#1a3a6b"/></svg></div>
+      <div class="route-info"><div class="route-name">Lamaran</div><div class="route-meta">4 pemberhentian · 05:45</div></div>
+      <div class="route-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+    <div class="route-card" onclick="selectRoute(this,'ByPass')">
+      <div class="route-icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a3a6b" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="3"/><path d="M7 17v2M17 17v2"/><circle cx="7" cy="14" r="1" fill="#1a3a6b"/><circle cx="17" cy="14" r="1" fill="#1a3a6b"/></svg></div>
+      <div class="route-info"><div class="route-name">ByPass</div><div class="route-meta">2 pemberhentian · 05:30</div></div>
+      <div class="route-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB: JADWAL DETAIL (Screenshot 3) ── -->
+<div id="tab-jadwal" class="page">
+<div class="detail-panel">
+  <div class="map-placeholder">
+    <div class="map-grid"></div>
+    <div class="map-road-h" style="top:40%;left:0;right:0"></div>
+    <div class="map-road-h" style="top:65%;left:0;right:0;opacity:.6"></div>
+    <div class="map-road-v" style="left:30%;top:0;bottom:0"></div>
+    <div class="map-road-v" style="left:60%;top:0;bottom:0;opacity:.6"></div>
+    <div class="map-pin"><div class="map-pin-label">Johar</div><div class="map-pin-dot"></div></div>
+  </div>
+  <div class="detail-body">
+    <div class="detail-header">
+      <div class="shift-badge"><div class="shift-badge-num">1</div><div class="shift-badge-time">05:00 - 16:00</div></div>
+      <div><div class="detail-route-name">Johar</div><div class="detail-address">Jl. Wirasaba, Karawang Timur,<br>Jawa Barat 41371</div></div>
+    </div>
+    <button class="btn-primary" onclick="switchTab('rfid')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      Sudah di Lokasi
+    </button>
+    <div class="info-box">
+      <div class="info-box-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>PATOKAN</div>
+      <div class="info-box-text">Di depan Toko Fitri Karung, samping gerbang. Pastikan menunggu di area berkanopi.</div>
+    </div>
+    <div class="timeline-title">RUTE PERJALANAN</div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-left"><div class="tl-dot active"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-time">Titik Jemput (06:00)</div><div class="tl-name">Johar</div></div></div>
+      <div class="timeline-item"><div class="timeline-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-time">Pemberhentian 2 (06:12)</div><div class="tl-name">Galuh Mas</div></div></div>
+      <div class="timeline-item"><div class="timeline-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-time">Pemberhentian 3 (10:45)</div><div class="tl-name">Pasar Johar</div></div></div>
+      <div class="timeline-item"><div class="timeline-left"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-time">Tujuan Akhir (11:10)</div><div class="tl-name">PT Mendatar (KIIC)</div></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── TAB: RFID WAIT/OK (Screenshot 4 & 5) ── -->
+<div id="tab-rfid" class="page">
+<div class="rfid-page">
+  <span class="rfid-badge wait" id="rfid-status-badge"><span class="rfid-dot"></span> RFID Wait</span>
+  <div class="spacer"></div>
+  <div class="rfid-status-circle wait" id="rfid-circle"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+  <div class="rfid-heading" id="rfid-heading">Menunggu...</div>
+  <div class="rfid-sub" id="rfid-subtext">Tap RFID di Bus</div>
+  <div class="rfid-detail-list">
+    <div class="rfid-detail-row"><div class="rfid-detail-left"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>NIK</div><div class="rfid-detail-value empty" id="rfid-nik">-</div></div>
+    <div class="rfid-detail-row"><div class="rfid-detail-left"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Waktu Deteksi RFID</div><div class="rfid-detail-value empty" id="rfid-time">-</div></div>
+    <div class="rfid-detail-row"><div class="rfid-detail-left"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Rute Operasional</div><div class="rfid-detail-value empty" id="rfid-rute">-</div></div>
+  </div>
+  <div class="spacer"></div>
+  <button class="btn-primary" style="max-width:340px" onclick="simulateRFID()">Simulasi Tap RFID</button>
+  <div style="height:12px"></div>
+  <button class="btn-secondary" style="max-width:340px" onclick="switchTab('tracking')">Lihat Tracking Bus →</button>
+</div>
+</div>
+
+<!-- ── TAB: TRACKING (Screenshot 6) ── -->
+<div id="tab-tracking" class="page">
+<div class="detail-panel">
+  <div class="tracking-map">
+    <div class="map-grid"></div>
+    <div class="map-road-h" style="top:45%;left:0;right:0"></div>
+    <div class="map-road-h" style="top:70%;left:0;right:0;opacity:.6"></div>
+    <div class="map-road-v" style="left:25%;top:0;bottom:0"></div>
+    <div class="map-road-v" style="left:65%;top:0;bottom:0;opacity:.6"></div>
+    <!-- Bus marker -->
+    <div style="position:absolute;top:38%;left:22%;transform:translate(-50%,-50%)">
+      <div style="background:var(--navy);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2.5px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="3"/></svg>
+      </div>
+    </div>
+    <!-- Destination marker -->
+    <div style="position:absolute;top:35%;left:65%;transform:translate(-50%,-50%)">
+      <div style="background:var(--blue-bright);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2.5px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="eta-banner"><div><span class="eta-number">8</span> <span class="eta-unit">Mnt</span></div><div class="eta-time">ETA: 05:45 WIB</div></div>
+  <div class="tracking-card">
+    <div class="plate-row"><div class="plate-label">Nomor Plat</div><div class="plate-number">K 3550 KU</div></div>
+    <div class="driver-row">
+      <div class="driver-avatar">RY</div>
+      <div><div class="driver-label">Driver</div><div class="driver-name">Ryo Yamada</div></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="timeline-title">RUTE PERJALANAN</div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-left"><div class="tl-dot active"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-time">Titik Jemput (06:00)</div><div class="tl-name">Johar</div></div></div>
+      <div class="timeline-item"><div class="timeline-left"><div class="tl-dot done"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-time">Pemberhentian 2 (06:12)</div><div class="tl-name">Galuh Mas</div></div></div>
+      <div class="timeline-item"><div class="timeline-left"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-time">Pemberhentian 3 (10:45)</div><div class="tl-name">Pasar Johar</div></div></div>
+      <div class="timeline-item"><div class="timeline-left"><div class="tl-dot"></div></div><div class="tl-content"><div class="tl-time">Tujuan Akhir (11:10)</div><div class="tl-name">Mendatar (KIIC)</div></div></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn-primary" onclick="switchTab('summary')">Lihat Ringkasan Perjalanan</button>
+  </div>
+</div>
+</div>
+
+<!-- ── TAB: HISTORI PERJALANAN ── -->
+<div id="tab-summary" class="page">
+  <div class="section-label">Histori Perjalanan</div>
+  
+  <div id="history-list-view">
+    <div class="history-list">
+    <!-- Hari ini -->
+    <div class="history-date">Hari Ini — Senin, 19 Mei 2026</div>
+    <div class="history-card" onclick="openHistoryDetail('Johar → PT Mendatar (KIIC)', '1', 'Senin, 19 Mei 2026', '05:28 WIB', '06:15 WIB', 'K 3550 KU', true)">
+      <div class="history-shift">1</div>
+      <div class="history-info">
+        <div class="history-route">Johar → PT Mendatar (KIIC)</div>
+        <div class="history-meta">RFID: 05:28 WIB · Tiba: 06:15 WIB · Plat: K 3550 KU</div>
+      </div>
+      <span class="history-badge ok">Sukses</span>
+    </div>
+
+    <!-- Kemarin -->
+    <div class="history-date">Minggu, 18 Mei 2026</div>
+    <div class="history-card" onclick="openHistoryDetail('Johar → PT Mendatar (KIIC)', '1', 'Minggu, 18 Mei 2026', '05:32 WIB', '06:20 WIB', 'K 3550 KU', true)">
+      <div class="history-shift">1</div>
+      <div class="history-info">
+        <div class="history-route">Johar → PT Mendatar (KIIC)</div>
+        <div class="history-meta">RFID: 05:32 WIB · Tiba: 06:20 WIB · Plat: K 3550 KU</div>
+      </div>
+      <span class="history-badge ok">Sukses</span>
+    </div>
+
+    <!-- Sabtu -->
+    <div class="history-date">Sabtu, 17 Mei 2026</div>
+    <div class="history-card" onclick="openHistoryDetail('Lamaran → PT Mendatar (KIIC)', '2', 'Sabtu, 17 Mei 2026', '13:45 WIB', '14:30 WIB', 'K 2110 AB', true)">
+      <div class="history-shift">2</div>
+      <div class="history-info">
+        <div class="history-route">Lamaran → PT Mendatar (KIIC)</div>
+        <div class="history-meta">RFID: 13:45 WIB · Tiba: 14:30 WIB · Plat: K 2110 AB</div>
+      </div>
+      <span class="history-badge ok">Sukses</span>
+    </div>
+
+    <!-- Jumat -->
+    <div class="history-date">Jumat, 16 Mei 2026</div>
+    <div class="history-card" onclick="openHistoryDetail('Johar → PT Mendatar (KIIC)', '1', 'Jumat, 16 Mei 2026', '05:30 WIB', '06:18 WIB', 'K 3550 KU', true)">
+      <div class="history-shift">1</div>
+      <div class="history-info">
+        <div class="history-route">Johar → PT Mendatar (KIIC)</div>
+        <div class="history-meta">RFID: 05:30 WIB · Tiba: 06:18 WIB · Plat: K 3550 KU</div>
+      </div>
+      <span class="history-badge ok">Sukses</span>
+    </div>
+    <div class="history-card" onclick="openHistoryDetail('PT Mendatar (KIIC) → Johar', '1', 'Jumat, 16 Mei 2026', '16:05 WIB', '16:55 WIB', 'K 3550 KU', true)">
+      <div class="history-shift">1</div>
+      <div class="history-info">
+        <div class="history-route">PT Mendatar (KIIC) → Johar</div>
+        <div class="history-meta">RFID: 16:05 WIB · Tiba: 16:55 WIB · Plat: K 3550 KU</div>
+      </div>
+      <span class="history-badge ok">Sukses</span>
+    </div>
+
+    <!-- Kamis -->
+    <div class="history-date">Kamis, 15 Mei 2026</div>
+    <div class="history-card miss" onclick="openHistoryDetail('Johar → PT Mendatar (KIIC)', '1', 'Kamis, 15 Mei 2026', '-', '-', '-', false)">
+      <div class="history-shift">1</div>
+      <div class="history-info">
+        <div class="history-route">Johar → PT Mendatar (KIIC)</div>
+        <div class="history-meta">RFID tidak terdeteksi · Shift 1</div>
+      </div>
+      <span class="history-badge miss">Tidak Ada</span>
+    </div>
+  </div>
+  </div>
+
+  <!-- Detail Perjalanan -->
+  <div id="history-detail-view" style="display:none;">
+    <button class="btn-secondary" style="margin-bottom: 24px; width: fit-content; padding: 10px 16px" onclick="closeHistoryDetail()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Kembali
+    </button>
+    
+    <div style="max-width: 480px; margin: 0 auto">
+      <div id="hist-detail-icon" style="width:80px; height:80px; border-radius:50%; background:var(--green-bg); display:flex; align-items:center; justify-content:center; margin: 0 auto 24px;">
+        <svg width="36" height="36" id="hist-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      
+      <div class="detail-panel" style="width:100%">
+        <div class="detail-body">
+          <div class="detail-header" style="align-items:flex-start">
+            <div class="shift-badge">
+              <div class="shift-badge-num" id="hist-detail-shift">1</div>
+              <div class="shift-badge-time">Shift</div>
+            </div>
+            <div>
+              <div class="detail-route-name" id="hist-detail-route" style="font-size:18px">Johar → PT Mendatar</div>
+              <div class="detail-address" id="hist-detail-date">Senin, 19 Mei 2026</div>
+            </div>
+          </div>
+          
+          <div class="info-box">
+            <div class="info-box-label">Status Perjalanan</div>
+            <div class="info-box-text" id="hist-detail-status" style="font-weight:700; color:var(--green-ok)">Selesai & Sukses</div>
+          </div>
+
+          <div class="timeline" style="margin-top: 24px">
+            <div class="timeline-item">
+              <div class="timeline-left"><div class="tl-dot done" id="tl-dot-1"></div><div class="tl-line"></div></div>
+              <div class="tl-content"><div class="tl-time" id="hist-detail-t1">05:28 WIB</div><div class="tl-name">RFID Tap Check-in</div></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-left"><div class="tl-dot done" id="tl-dot-2"></div><div class="tl-line"></div></div>
+              <div class="tl-content"><div class="tl-time" id="hist-detail-t2">05:30 WIB</div><div class="tl-name">Bus Berangkat</div></div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-left"><div class="tl-dot done" id="tl-dot-3"></div></div>
+              <div class="tl-content"><div class="tl-time" id="hist-detail-t3">06:15 WIB</div><div class="tl-name">Tiba di Lokasi</div></div>
+            </div>
+          </div>
+          
+          <div style="border-top: 1px solid var(--gray-200); margin-top: 24px; padding-top: 20px;">
+             <div class="plate-label">Kendaraan & Plat Nomor</div>
+             <div class="plate-number" id="hist-detail-plat">K 3550 KU</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- /content -->
+</main>
+</div>
+</div><!-- /page-dashboard -->
+
+<!-- Demo Navigation -->
+<div class="demo-nav">
+  <button class="demo-btn" onclick="showPage('login')">① Login</button>
+  <button class="demo-btn" onclick="showPage('dashboard');switchTab('pusat')">② Dashboard</button>
+  <button class="demo-btn" onclick="showPage('dashboard');switchTab('jadwal')">③ Jadwal</button>
+  <button class="demo-btn" onclick="showPage('dashboard');switchTab('rfid')">④ RFID</button>
+  <button class="demo-btn" onclick="showPage('dashboard');switchTab('tracking')">⑤ Tracking</button>
+  <button class="demo-btn" onclick="showPage('dashboard');switchTab('summary')">⑥ Histori</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
