@@ -31,7 +31,7 @@ function switchTab(tab) {
   if (t) { t.classList.add('active'); t.style.animation = 'fadeIn .3s ease-out'; }
 
   // Topbar
-  const titles = { pusat:'Beranda — Pusat', jadwal:'Jadwal & Titik Jemput', rfid:'RFID Check-in', tracking:'Tracking Bus Live', summary:'Histori Perjalanan', profile:'Profil Karyawan' };
+  const titles = { pusat:'Pusat', jadwal:'Jadwal & Titik Jemput', rfid:'RFID Check-in', tracking:'Tracking Bus Live', summary:'Histori Perjalanan', profile:'Profil Karyawan' };
   const tt = document.getElementById('topbar-title');
   if (tt) tt.textContent = titles[tab] || 'Beranda';
 
